@@ -8,9 +8,6 @@ class SecurityController extends AbstractController{
     // contiendra les méthodes liées à l'authentification : register, login et logout
 
     public function register () {
-        // connexion à la bdd
-        $pdo = new PDO("mysql:host=localhost;dbname=php_hash;charset=utf8", "root", "");
-
         // filtrer saisie des champs du formulaire d'inscription
         $pseudo = filter_input(INPUT_POST, "pseudo", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
@@ -45,9 +42,6 @@ class SecurityController extends AbstractController{
     
     public function login () {
         if($_POST["submit"]) {
-            // connexion à la bdd
-            $pdo = new PDO("mysql:host=localhost;dbname=php_hash;charset=utf8", "root", "");
-            
             // filtrer saisie des champs du formulaire d'inscription
             $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
             $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -55,12 +49,12 @@ class SecurityController extends AbstractController{
             if($email && $password){
                 $requete = $pdo->prepare("SELECT * FROM user WHERE email = :email");
                 $requete->execute(["email"=> $email]);
-                $user = $requete>fetch();
+                $user = $requete->fetch();
 
                 // si utilisateur existe
                 if($user){
                     $hash = $user["password"];
-                    if(password_verify($pasword, $hash)){
+                    if(password_verify($password, $hash)){
                         $_SESSION["user"] = $user;
                         header("Location: home.php"); exit; // MODIFIER la redirection pour adapter au  doc
                     } else {
@@ -75,19 +69,12 @@ class SecurityController extends AbstractController{
             }
             header("Location: login.php"); exit; // MODIFIER la redirection pour adapter au  doc
         }
-        
+    }    
+    
     public function logout () {
         unset($_SESSION["user"]);
         header("Location: home.php"); exit; // MODIFIER la redirection pour adapter au  doc
     }
-    
 
-
-    if(isset($_GET["action"])){
-        case "register": register();
-            break;
-        case "login": login();
-            break;
-    }
 }
 
