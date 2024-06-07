@@ -60,4 +60,20 @@ class ForumController extends AbstractController implements ControllerInterface{
             ]
         ];
     }
+
+    public function addPost($id) {
+        $postManager = new PostManager();
+    
+        $content = filter_input(INPUT_POST, "content", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        if($content) {
+            $postManager->add([
+                "content"=> $content, 
+                "topic_id" => $id, 
+                "user_id" => 1
+            ]);
+            $this->redirectTo("forum", "listPostsByTopic", $id);
+        } else {
+            // message "saisie incorrecte"
+        }
+    }
 }

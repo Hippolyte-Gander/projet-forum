@@ -3,7 +3,7 @@
     $posts = $result["data"]['posts'];
     ?>
 
-<!-- <h1>?= $topics[] ?></h1> -->
+<h1><?= $topic->getTitle() ?></h1>
 
 <?php
 if($posts) {
@@ -19,7 +19,7 @@ if($posts) {
     echo "<p>Aucun post pour le moment!</p>";
 } ?>
 
-<form action="">
-    <textarea name="" id=""></textarea>
+<form action="index.php?ctrl=forum&action=addPost&id=<?= $topic->getId() ?>" method="POST">
+    <textarea name="content" id=""></textarea>
     <input type="submit" value="Poster">
 </form>

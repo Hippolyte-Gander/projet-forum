@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>S'inscrire</h1>
-
+    <!-- modifier action -->
         <form action="tritement.php?action=register" methode="POST">
             <label for="pseudo">Pseudo</label>
             <input type="text" name="pseudo" id="pseudo"><br>

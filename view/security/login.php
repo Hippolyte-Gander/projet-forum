@@ -7,8 +7,8 @@
 </head>
 <body>
     <h1>Se connecter</h1>
-
-        <form action="tritement.php?action=register" methode="POST">
+    <!-- modifier action -->
+        <form action="tritement.php?action=register" methode="POST"> 
            
             <label for="email">Mail</label>
             <input type="email" name="email" id="email"><br>

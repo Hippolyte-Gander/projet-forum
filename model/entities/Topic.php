@@ -20,6 +20,13 @@ final class Topic extends Entity{
         $this->hydrate($data);        
     }
 
+    public function getFormatedDate($date) {
+        $formatedDate = new \DateTime($date);
+        $formatedDate = $formatedDate->format('d/m/Y \à H:i');
+        return $formatedDate;
+    }
+
+
     /**
      * Get the value of id
      */ 
