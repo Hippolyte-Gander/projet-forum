@@ -19,6 +19,12 @@ final class Post extends Entity{ // à vérifier : pas complet
         $this->hydrate($data);        
     }
 
+    public function getFormatedDate(){
+        $formatedDate = new \DateTime($this->postDate);
+        $formatedDate = $formatedDate->format('d/m/Y H:i');
+        return $formatedDate;
+    }
+
     /**
      * Get the value of id
      */ 

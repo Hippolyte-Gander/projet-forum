@@ -7,7 +7,7 @@
 
 <?php
 foreach($topics as $topic ){ 
-    $date = $topic->getTopicDate();?>
+    $formatedDate = $topic->getFormatedDate();?>
 
-    <p><a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic ?></a> par <?= $topic->getUser() ?> <?=  "le " . $date->getFormatedDate() ?></p>
+    <p><a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic ?></a> par <?= $topic->getUser() ?> <?=  "posted on " . $formatedDate ?></p>
 <?php }

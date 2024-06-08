@@ -8,11 +8,9 @@
 <?php
 if($posts) {
     foreach($posts as $post ){ 
-        $date = new DateTime($post->getPostDate());
-        $formattedDate = $date->format('d/m/Y \à H:i');    
-        ?>
+        $formatedDate = $post->getFormatedDate();?>
 
-        <p><a href="#"><?= $post->getUser() ?></a> <?= $formattedDate ?> <br> 
+        <p><a href="#"><?= $post->getUser() ?></a> <?= " posted on ".$formatedDate ?> <br> 
         <?= $post->getContent() ?></p>
     <?php }
 } else {
