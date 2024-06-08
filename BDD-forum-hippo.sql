@@ -14,20 +14,28 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
+-- Listage de la structure de la base pour forum_hippo
+DROP DATABASE IF EXISTS `forum_hippo`;
+CREATE DATABASE IF NOT EXISTS `forum_hippo` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `forum_hippo`;
+
 -- Listage de la structure de table forum_hippo. category
+DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `id_category` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_bin NOT NULL,
   PRIMARY KEY (`id_category`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Listage des données de la table forum_hippo.category : ~0 rows (environ)
+-- Listage des données de la table forum_hippo.category : ~3 rows (environ)
 INSERT INTO `category` (`id_category`, `name`) VALUES
 	(1, 'Vacation'),
 	(2, 'Sport'),
 	(3, 'Politics');
 
 -- Listage de la structure de table forum_hippo. post
+DROP TABLE IF EXISTS `post`;
 CREATE TABLE IF NOT EXISTS `post` (
   `id_message` int NOT NULL AUTO_INCREMENT,
   `content` text COLLATE utf8mb4_bin NOT NULL,
@@ -43,9 +51,12 @@ CREATE TABLE IF NOT EXISTS `post` (
 
 -- Listage des données de la table forum_hippo.post : ~1 rows (environ)
 INSERT INTO `post` (`id_message`, `content`, `postDate`, `topic_id`, `user_id`) VALUES
-	(1, 'No, hawai is more beautiful', '2024-06-08 21:13:43', 1, 1);
+	(1, 'No, hawai is more beautiful', '2024-06-08 21:13:43', 1, 1),
+	(2, 'Tektonic was&#039;t overrated', '2024-06-08 22:27:33', 1, 1),
+	(3, 'this guy is so badass', '2024-06-08 22:31:30', 2, 1);
 
 -- Listage de la structure de table forum_hippo. topic
+DROP TABLE IF EXISTS `topic`;
 CREATE TABLE IF NOT EXISTS `topic` (
   `id_topic` int NOT NULL AUTO_INCREMENT,
   `title` varchar(50) COLLATE utf8mb4_bin NOT NULL,
@@ -60,12 +71,16 @@ CREATE TABLE IF NOT EXISTS `topic` (
   CONSTRAINT `topic_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Listage des données de la table forum_hippo.topic : ~0 rows (environ)
+-- Listage des données de la table forum_hippo.topic : ~5 rows (environ)
 INSERT INTO `topic` (`id_topic`, `title`, `topicDate`, `category_id`, `user_id`, `closed`) VALUES
 	(1, 'Island best country', '2024-06-08 21:12:29', 1, 1, NULL),
-	(2, 'Zidane never beaten ?', '2024-06-08 21:12:29', 2, 1, NULL);
+	(2, 'Zidane never beaten ?', '2024-06-08 21:12:29', 2, 1, NULL),
+	(3, 'Dance', '2024-06-08 22:27:33', 1, 1, NULL),
+	(4, 'Zlatan', '2024-06-08 22:31:30', 2, 1, NULL),
+	(5, 'Is Biden too old ?', '2024-06-08 22:38:47', 3, 1, NULL);
 
 -- Listage de la structure de table forum_hippo. user
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id_user` int NOT NULL AUTO_INCREMENT,
   `nickname` varchar(50) COLLATE utf8mb4_bin NOT NULL,
@@ -78,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `mail` (`mail`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Listage des données de la table forum_hippo.user : ~0 rows (environ)
+-- Listage des données de la table forum_hippo.user : ~2 rows (environ)
 INSERT INTO `user` (`id_user`, `nickname`, `mail`, `password`, `accountDate`, `role`) VALUES
 	(1, 'John', 'john@exemple.com', 'PASSWORD1', '2024-06-07 21:01:22', 'user'),
 	(2, 'Doe', 'doe@exemple.com', 'PASSWORD2', '2024-06-08 21:01:22', 'user');
