@@ -10,4 +10,12 @@ foreach($topics as $topic ){
     $formatedDate = $topic->getFormatedDate();?>
 
     <p><a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic ?></a> par <?= $topic->getUser() ?> <?=  "posted on " . $formatedDate ?></p>
-<?php }
+<?php }?>
+
+<form action="index.php?ctrl=forum&action=addTopic&id=<?= $topic->getId() ?>" method="POST">
+    <label for="">New Topic</label>
+    <input type="text" name="title" id="<?= $topic->getId() ?>"></input>
+    <textarea name="content" id=""></textarea>
+    <input type="submit" value="Poster">
+</form>
+

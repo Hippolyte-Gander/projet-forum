@@ -76,4 +76,28 @@ class ForumController extends AbstractController implements ControllerInterface{
             // message "saisie incorrecte"
         }
     }
+
+    public function addTopic($id) {
+        $postManager = new PostManager();
+        $topicManager = new TopicManager();
+
+        $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $content = filter_input(INPUT_POST, "content", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        if($title && $content) {
+            $topicManager->add([
+                "title"=> $title, 
+                "category_id" => $id, 
+                "user_id" => 1
+            ]);
+            $postManager->insert([
+                "content"=> $content, 
+                "topic_id" => $id, 
+                "user_id" => 1
+            ]);
+            $this->redirectTo("forum", "listPostsByTopic", $id);
+        } else {
+            // message "saisie incorrecte"
+        }
+    }
+
 }
