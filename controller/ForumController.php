@@ -2,6 +2,7 @@
 namespace Controller;
 
 use App\Session;
+use App\DAO;
 use App\AbstractController;
 use App\ControllerInterface;
 use Model\Managers\PostManager;
@@ -89,7 +90,7 @@ class ForumController extends AbstractController implements ControllerInterface{
                 "category_id" => $id, 
                 "user_id" => 1
             ]);
-            $postManager->insert([
+            $postManager->insert()([
                 "content"=> $content, 
                 "topic_id" => $id, 
                 "user_id" => 1

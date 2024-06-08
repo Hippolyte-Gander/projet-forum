@@ -2,7 +2,7 @@
     $categories = $result["data"]['categories']; 
 ?>
 
-<h1>Liste des catégories</h1>
+<h1>List of categories</h1>
 
 <?php
 foreach($categories as $category ){ ?>
