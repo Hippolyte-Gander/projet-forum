@@ -6,6 +6,5 @@
 
 <?php
 foreach($categories as $category ){ ?>
-    <h4></h4>
     <p><a href="index.php?ctrl=forum&action=listTopicsByCategory&id=<?= $category->getId() ?>"><?= $category->getName() ?> </a></p>
 <?php }

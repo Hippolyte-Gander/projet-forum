@@ -8,3 +8,17 @@
 h1 {
     color: rgb(0, 122, 156);
 }
+
+nav{
+    display: flex;
+    margin: 20px;
+    border:  solid red;
+}
+    
+#nav-left{
+    text-decoration: none;
+}
+
+#nav-right{
+    text-decoration: none;
+}
