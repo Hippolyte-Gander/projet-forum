@@ -7,11 +7,11 @@
 
 <?php
 if($topics) {
-foreach($topics as $topic ){ 
-    $formatedDate = $topic->getFormatedDate();?>
+    foreach($topics as $topic ){ 
+        $formatedDate = $topic->getFormatedDate();?>
 
-    <p><a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic ?></a> par <?= $topic->getUser() ?> <?=  "posted on " . $formatedDate ?></p>
-<?php }
+        <p><a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic ?></a> par <?= $topic->getUser() ?> <?=  "posted on " . $formatedDate ?></p>
+    <?php }
 } else {
     echo "<p>Aucun topic pour le moment!</p>";
 } ?>
@@ -21,4 +21,3 @@ foreach($topics as $topic ){
     <textarea name="content" id=""></textarea>
     <input type="submit" value="Poster">
 </form>
-

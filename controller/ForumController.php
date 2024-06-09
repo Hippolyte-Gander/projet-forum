@@ -90,7 +90,7 @@ class ForumController extends AbstractController implements ControllerInterface{
                 "category_id" => $id, 
                 "user_id" => 1
             ]);
-            $postManager->insert()([
+            $postManager->insert()([ // pas reconnue alors que DAO est use
                 "content"=> $content, 
                 "topic_id" => $id, 
                 "user_id" => 1
@@ -100,5 +100,4 @@ class ForumController extends AbstractController implements ControllerInterface{
             // message "saisie incorrecte"
         }
     }
-
 }
