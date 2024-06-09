@@ -14,7 +14,7 @@ if($topics) {
         <?php 
         if (!empty($posts)) {
             foreach ($posts as $post){ ?>
-                <p><?= $post->getContent(); break?></p>
+                <p><?= $post->getContent(); break;?></p>  <!-- je n'arrive pas à ajouter l'id du topic pour lequel on veut le post -->
     <?php }}}
 } else {
     echo "<p>Aucun topic pour le moment!</p>";
