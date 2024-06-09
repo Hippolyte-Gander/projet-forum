@@ -47,13 +47,14 @@ CREATE TABLE IF NOT EXISTS `post` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `post_ibfk_1` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id_topic`),
   CONSTRAINT `post_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Listage des données de la table forum_hippo.post : ~1 rows (environ)
+-- Listage des données de la table forum_hippo.post : ~4 rows (environ)
 INSERT INTO `post` (`id_message`, `content`, `postDate`, `topic_id`, `user_id`) VALUES
 	(1, 'No, hawai is more beautiful', '2024-06-08 21:13:43', 1, 1),
 	(2, 'Tektonic was&#039;t overrated', '2024-06-08 22:27:33', 1, 1),
-	(3, 'this guy is so badass', '2024-06-08 22:31:30', 2, 1);
+	(3, 'this guy is so badass', '2024-06-08 22:31:30', 2, 1),
+	(4, 'yes', '2024-06-09 21:28:09', 5, 1);
 
 -- Listage de la structure de table forum_hippo. topic
 DROP TABLE IF EXISTS `topic`;
@@ -69,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `topic` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `topic_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id_category`),
   CONSTRAINT `topic_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- Listage des données de la table forum_hippo.topic : ~5 rows (environ)
 INSERT INTO `topic` (`id_topic`, `title`, `topicDate`, `category_id`, `user_id`, `closed`) VALUES
