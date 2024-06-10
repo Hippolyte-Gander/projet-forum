@@ -19,7 +19,7 @@
                 <header>
                     <nav>
                         <div id="nav-left">
-                            <a href="/">Accueil</a>
+                            <a href="http://localhost/hippolyteG/Github/projet-forum/">Accueil</a>
                             <?php
                             if(App\Session::isAdmin()){
                                 ?>
@@ -38,7 +38,7 @@
                             else{
                                 ?>
                                 <a href="index.php?ctrl=security&action=login">Connexion</a>
-                                <a href="index.php?ctrl=security&action=register">Inscription</a>
+                                <a href="index.php?ctrl=security&action=index">Inscription</a>
                                 <a href="index.php?ctrl=forum&action=index">Liste des catégories</a>
                             <?php
                             }

@@ -6,22 +6,22 @@
     <title>Register</title>
 </head>
 <body>
-    <h1>S'inscrire</h1>
+    <h1>Register</h1>
     <!-- modifier action -->
-        <form action="tritement.php?action=register" methode="POST">
-            <label for="pseudo">Pseudo</label>
-            <input type="text" name="pseudo" id="pseudo"><br>
+        <form action="index.php?ctrl=security&action=register" method="POST">
+            <label for="nickname">Nickname</label>
+            <input type="text" name="nickname" id=""><br>
             
-            <label for="email">Mail</label>
-            <input type="email" name="email" id="email"><br>
+            <label for="email">Email</label>
+            <input type="email" name="email" id=""><br>
             
-            <label for="pass1">Mot de passe</label>
-            <input type="password" name="pass1" id="pass1"><br>
+            <label for="pass1">Password</label>
+            <input type="password" name="pass1" id=""><br>
             
-            <label for="pass2">Confirmation du mot de passe</label>
-            <input type="password" name="pass2" id="pass2"><br>
+            <label for="pass2">Confirm password</label>
+            <input type="password" name="pass2" id=""><br>
             
-            <input type="submit" value="S'enregistrer"><br>
+            <input type="submit" name="submit" value="Register"><br>
 
 
         </form>

@@ -14,11 +14,11 @@
             <input type="email" name="email" id="email"><br>
             
             <label for="pass1">Mot de passe</label>
-            <input type="password" name="pass1" id="pass1"><br>
+            <input type="password" name="password" id="password"><br>
             
 
             
-            <input type="submit" value="Se connecter"><br>
+            <input type="submit" name="submit" value="Se connecter"><br>
 
 
         </form>
