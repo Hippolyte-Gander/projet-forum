@@ -56,7 +56,7 @@ class ForumController extends AbstractController implements ControllerInterface{
         $topicManager = new TopicManager();
         $topic = $topicManager->findOneById($id);
         $posts = $postManager->findPostsByTopic($id);
-
+        $topicOwner = $topicManager->findOneById($id);
         return [
             "view" => VIEW_DIR."forum/topicPage.php",
             "meta_description" => "Liste des messages du topic : ".$topic,
@@ -120,5 +120,12 @@ class ForumController extends AbstractController implements ControllerInterface{
         } else {
             // message "Please log in to post"
         }
+    }
+
+    public function closeTopic() {
+        $topicManager = new TopicManager();
+        $topicManager->update([
+            "closed"=> true
+        ]);
     }
 }

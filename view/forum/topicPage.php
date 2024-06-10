@@ -4,8 +4,15 @@
     ?>
 
 <h1><?= $topic->getTitle() ?></h1>
+<?php 
+$user = App\Session::getUser();
+if ($user) {
+    $owner = $topic->getUser();
+    if ($owner == $user) {
+        echo '<button>Close Topic</button>';
+    }
+}
 
-<?php
 if($posts) {
     foreach($posts as $post ){ 
         $formatedDate = $post->getFormatedDate();?>
@@ -17,7 +24,8 @@ if($posts) {
     echo "<p>Aucun post pour le moment!</p>";
 }
 $user = App\Session::getUser();
-if ($user) {
+$status = $topic->getClosed();
+if ($user && $status == false) {
     echo '<form action="index.php?ctrl=forum&action=addPost&id='.$topic->getId().'" method="POST">
         <textarea name="content" id=""></textarea>
         <input type="submit" value="Poster">
