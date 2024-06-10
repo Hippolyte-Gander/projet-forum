@@ -5,9 +5,11 @@ use App\Session;
 use App\DAO;
 use App\AbstractController;
 use App\ControllerInterface;
-use Model\Managers\PostManager;
-use Model\Managers\TopicManager;
 use Model\Managers\CategoryManager;
+use Model\Managers\TopicManager;
+use Model\Managers\PostManager;
+use Model\Managers\UserManager;
+use Model\Entities\User;
 
 class ForumController extends AbstractController implements ControllerInterface{
 
@@ -66,41 +68,57 @@ class ForumController extends AbstractController implements ControllerInterface{
     }
 
     public function addPost($id) {
+
         $postManager = new PostManager();
-    
+        $user = Session::getUser();
+
         $content = filter_input(INPUT_POST, "content", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if($content) {
-            $postManager->add([
-                "content"=> $content, 
-                "topic_id" => $id, 
-                "user_id" => 1
-            ]);
-            $this->redirectTo("forum", "listPostsByTopic", $id);
+
+        if ($user){
+            $userId = $user->getId();
+            if($content) {
+                $postManager->add([
+                    "content"=> $content, 
+                    "topic_id" => $id, 
+                    "user_id" => $userId
+                ]);
+                $this->redirectTo("forum", "listPostsByTopic", $id);
+            } else {
+                // message "wrong input"
+            }
         } else {
-            // message "saisie incorrecte"
+            // message "Please log in to post"
         }
     }
 
     public function addTopic($id) {
+
         $postManager = new PostManager();
         $topicManager = new TopicManager();
+        $user = Session::getUser();
 
         $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $content = filter_input(INPUT_POST, "content", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if($title && $content) {
-           $newId = $topicManager->add([
-                "title"=> $title, 
-                "category_id" => $id, 
-                "user_id" => 1
-            ]);
-            $postManager->add([
-                "content"=> $content, 
-                "topic_id" => $newId, 
-                "user_id" => 1
-            ]);
-            $this->redirectTo("forum", "listPostsByTopic", $newId);
+
+        if($user) {
+            $userId = $user->getId();
+            if($title && $content) {
+               $newId = $topicManager->add([
+                    "title"=> $title, 
+                    "category_id" => $id, 
+                    "user_id" => $userId
+                ]);
+                $postManager->add([
+                    "content"=> $content, 
+                    "topic_id" => $newId, 
+                    "user_id" => $userId
+                ]);
+                $this->redirectTo("forum", "listPostsByTopic", $newId);
+            } else {
+                // message "wrong input"
+            }
         } else {
-            // message "saisie incorrecte"
+            // message "Please log in to post"
         }
     }
 }
