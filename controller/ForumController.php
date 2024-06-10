@@ -88,17 +88,17 @@ class ForumController extends AbstractController implements ControllerInterface{
         $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $content = filter_input(INPUT_POST, "content", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         if($title && $content) {
-            $topicManager->add([
+           $newId = $topicManager->add([
                 "title"=> $title, 
                 "category_id" => $id, 
                 "user_id" => 1
             ]);
-            $postManager->insert()([ // pas reconnue alors que DAO est use
+            $postManager->add([
                 "content"=> $content, 
-                "topic_id" => $id, 
+                "topic_id" => $newId, 
                 "user_id" => 1
             ]);
-            $this->redirectTo("forum", "listPostsByTopic", $id);
+            $this->redirectTo("forum", "listPostsByTopic", $newId);
         } else {
             // message "saisie incorrecte"
         }

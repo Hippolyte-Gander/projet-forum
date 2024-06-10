@@ -11,17 +11,13 @@ if($topics) {
     foreach($topics as $topic ){ 
         $formatedDate = $topic->getFormatedDate();?>
             <p><a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic ?></a> par <?= $topic->getUser() ?> <?=  "posted on " . $formatedDate ?></p>
-        <?php 
-        if (!empty($posts)) {
-            foreach ($posts as $post){ ?>
-                <p><?= $post->getContent(); break;?></p>  <!-- je n'arrive pas à ajouter l'id du topic pour lequel on veut le post -->
-    <?php }}}
+        <?php }
 } else {
     echo "<p>Aucun topic pour le moment!</p>";
 } ?>
 <form action="index.php?ctrl=forum&action=addTopic&id=<?= $topic->getId() ?>" method="POST">
     <label for="">New Topic</label>
-    <input type="text" name="title" id="<?= $topic->getId() ?>"></input>
+    <input type="text" name="title" id=""></input>
     <textarea name="content" id=""></textarea>
     <input type="submit" value="Poster">
 </form>
