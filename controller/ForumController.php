@@ -122,10 +122,29 @@ class ForumController extends AbstractController implements ControllerInterface{
         }
     }
 
-    public function closeTopic() {
+    public function closeTopic($id) {
         $topicManager = new TopicManager();
-        $topicManager->update([
-            "closed"=> true
-        ]);
+        $topicManager->closeTopic($id);
+        $this->redirectTo("forum","listPostsByTopic", $id);
+    }
+
+    public function closeTopicInList($id) {
+        $topicManager = new TopicManager();
+        $topicManager->closeTopic($id);
+        // ajouter id par category pour le redirect
+        $this->redirectTo("forum","listTopicsByCategory", $id);
+    }
+
+    public function openTopic($id) {
+        $topicManager = new TopicManager();
+        $topicManager->openTopic($id);
+        $this->redirectTo("forum","listPostsByTopic", $id);
+    }
+
+    public function openTopicInList($id) {
+        $topicManager = new TopicManager();
+        // ajouter id par category pour le redirect
+        $topicManager->openTopic($id);
+        $this->redirectTo("forum","listTopicsByCategory", $id);
     }
 }

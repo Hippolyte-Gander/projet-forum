@@ -8,8 +8,13 @@
 $user = App\Session::getUser();
 if ($user) {
     $owner = $topic->getUser();
+    $id= $topic->getId();
     if ($owner == $user) {
-        echo '<button>Close Topic</button>';
+        if(!$topic->getClosed()) {
+            echo "<a href='index.php?ctrl=forum&action=closeTopic&id=$id'>Close Topic</a>";
+        } else {
+            echo "<a href='index.php?ctrl=forum&action=openTopic&id=$id'>Open Topic</a>";
+        }
     }
 }
 
@@ -25,11 +30,15 @@ if($posts) {
 }
 $user = App\Session::getUser();
 $status = $topic->getClosed();
-if ($user && $status == false) {
-    echo '<form action="index.php?ctrl=forum&action=addPost&id='.$topic->getId().'" method="POST">
-        <textarea name="content" id=""></textarea>
-        <input type="submit" value="Poster">
-    </form>';
+if ($user) {
+    if (!$status) {
+        echo '<form action="index.php?ctrl=forum&action=addPost&id='.$topic->getId().'" method="POST">
+            <textarea name="content" id=""></textarea>
+            <input type="submit" value="Poster">
+        </form>';
+    } else {
+        echo '<p>This topic is closed. </p>';
+    }
 } else {
     echo '<p>Please log in to write an answer. </p>';
 }

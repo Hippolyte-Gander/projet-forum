@@ -15,10 +15,10 @@ nav{
     /* border:  solid red; */
 }
     
-#nav-left{
+#nav-left a{
     text-decoration: none;
 }
 
-#nav-right{
+#nav-right a{
     text-decoration: none;
 }
