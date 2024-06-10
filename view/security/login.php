@@ -6,9 +6,8 @@
     <title>Log in</title>
 </head>
 <body>
-    <h1>Se connecter</h1>
-    <!-- modifier action -->
-        <form action="index.php?action=register" methode="POST"> 
+    <h1>Login</h1>
+        <form action="index.php?ctrl=security&action=login" method="POST"> 
            
             <label for="email">Mail</label>
             <input type="email" name="email" id="email"><br>

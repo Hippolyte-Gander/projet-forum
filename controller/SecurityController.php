@@ -55,7 +55,9 @@ class SecurityController extends AbstractController{
         
     
     public function login () {
+
         $userManager = new UserManager();
+        
         if(isset($_POST["submit"])) {
             // filtrer saisie des champs du formulaire d'inscription
             $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
@@ -63,24 +65,24 @@ class SecurityController extends AbstractController{
             
             if($email && $password){
                 // si utilisateur existe
-                if($email){
-                    $userId = $email->findUserId();
-                    $hash = $userId->getPassword();
+
+                $user = $userManager->checkUserExists($email);
+
+                if($user){
+                    $hash = $user->getPassword();
                     if(password_verify($password, $hash)){
-                        $user = $userManager->findUser($userId);
-                        $user->setUser;
+                        Session::setUser($user);
                         $this->redirectTo("forum", "index");
                     } else {
                         $this->redirectTo("security", "login");
                         // alert("insert valid informations");
                     }
                 } else {
-                    header("Location: login.php"); exit; // MODIFIER la redirection pour adapter au  doc
-                    // message d'erreur "utilisateur ou mdp incorrect"
+                    $this->redirectTo("security", "login");
                 }
                 
             }
-            header("Location: login.php"); exit; // MODIFIER la redirection pour adapter au  doc
+            $this->redirectTo("security", "login");
         }
 
         return [
@@ -90,10 +92,10 @@ class SecurityController extends AbstractController{
     }    
     
     public function logout () {
-        unset($_SESSION["user"]);
-        header("Location: home.php"); exit; // MODIFIER la redirection pour adapter au  doc
+        
+        if(Session::getUser()) {
+            Session::setUser(null);
+            $this->redirectTo("security", "login");    
+        }
     }
-    
 }
-
-

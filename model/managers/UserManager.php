@@ -14,15 +14,16 @@ class UserManager extends Manager{
         parent::connect();
     }
 
-    public function findUser($id) {
-        return $id->findOneById();
-    }
+    public function checkUserExists($mail) {
 
-    public function isSetUser($email) {
-        if ($email->findOneById()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+        $sql = "SELECT * 
+            FROM ".$this->tableName." t 
+            WHERE mail = :mail";
+
+        // la requête renvoie plusieurs enregistrements --> getMultipleResults
+        return  $this->getOneOrNullResult(
+            DAO::select($sql, ['mail' => $mail], false), 
+            $this->className
+        );
+            }
 }

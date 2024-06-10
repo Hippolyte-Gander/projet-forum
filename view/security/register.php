@@ -22,9 +22,6 @@
             <input type="password" name="pass2" id=""><br>
             
             <input type="submit" name="submit" value="Register"><br>
-
-
         </form>
-
 </body>
 </html>
