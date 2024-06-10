@@ -18,7 +18,7 @@
             
 
             
-            <input type="submit" name="submit" value="Se connecter"><br>
+            <input type="submit" name="submit" value="Login"><br>
 
 
         </form>
