@@ -14,10 +14,15 @@ if($topics) {
         <?php }
 } else {
     echo "<p>Aucun topic pour le moment!</p>";
-} ?>
-<form action="index.php?ctrl=forum&action=addTopic&id=<?= $topic->getId() ?>" method="POST">
-    <label for="">New Topic</label>
-    <input type="text" name="title" id=""></input>
-    <textarea name="content" id=""></textarea>
-    <input type="submit" value="Poster">
-</form>
+}
+$user = App\Session::getUser();
+if($user) {
+    echo '<form action="index.php?ctrl=forum&action=addTopic&id='.$topic->getId().'" method="POST">
+        <label for="">New Topic</label>
+        <input type="text" name="title" id=""></input>
+        <textarea name="content" id=""></textarea>
+        <input type="submit" value="Poster">
+    </form>';
+} else {
+    echo '<p>Please log in to creat a topic. </p>';
+}

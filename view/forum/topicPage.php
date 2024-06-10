@@ -15,9 +15,13 @@ if($posts) {
     <?php }
 } else {
     echo "<p>Aucun post pour le moment!</p>";
-} ?>
-
-<form action="index.php?ctrl=forum&action=addPost&id=<?= $topic->getId() ?>" method="POST">
-    <textarea name="content" id=""></textarea>
-    <input type="submit" value="Poster">
-</form>
+}
+$user = App\Session::getUser();
+if ($user) {
+    echo '<form action="index.php?ctrl=forum&action=addPost&id='.$topic->getId().'" method="POST">
+        <textarea name="content" id=""></textarea>
+        <input type="submit" value="Poster">
+    </form>';
+} else {
+    echo '<p>Please log in to write an answer. </p>';
+}
