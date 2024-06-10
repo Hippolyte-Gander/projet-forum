@@ -39,7 +39,7 @@ class SecurityController extends AbstractController{
                     }
                 // }
             } else {
-                alert("insert valid informations");
+                // alert("insert valid informations");
             }
         }
 
@@ -64,13 +64,15 @@ class SecurityController extends AbstractController{
             if($email && $password){
                 // si utilisateur existe
                 if($email){
-                    $hash = $user["password"];
+                    $userId = $email->findUserId();
+                    $hash = $userId->getPassword();
                     if(password_verify($password, $hash)){
-                        $_SESSION["user"] = $user;
-                        header("Location: home.php"); exit; // MODIFIER la redirection pour adapter au  doc
+                        $user = $userManager->findUser($userId);
+                        $user->setUser;
+                        $this->redirectTo("forum", "index");
                     } else {
-                        header("Location: login.php"); exit; // MODIFIER la redirection pour adapter au  doc
-                        // message d'erreur "utilisateur ou mdp incorrect"
+                        $this->redirectTo("security", "login");
+                        // alert("insert valid informations");
                     }
                 } else {
                     header("Location: login.php"); exit; // MODIFIER la redirection pour adapter au  doc

@@ -14,5 +14,15 @@ class UserManager extends Manager{
         parent::connect();
     }
 
-    
+    public function findUser($id) {
+        return $id->findOneById();
+    }
+
+    public function isSetUser($email) {
+        if ($email->findOneById()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

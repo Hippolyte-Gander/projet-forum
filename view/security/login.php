@@ -8,7 +8,7 @@
 <body>
     <h1>Se connecter</h1>
     <!-- modifier action -->
-        <form action="tritement.php?action=register" methode="POST"> 
+        <form action="index.php?action=register" methode="POST"> 
            
             <label for="email">Mail</label>
             <input type="email" name="email" id="email"><br>
