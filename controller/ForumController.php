@@ -31,10 +31,11 @@ class ForumController extends AbstractController implements ControllerInterface{
     }
 
     public function listTopicsByCategory($id) {
-
+        // créer une nouvelle instance de CategoryManager, TopicManager et PostManager
         $categoryManager = new CategoryManager();
         $topicManager = new TopicManager();
         $postManager = new PostManager();
+        // 
         $category = $categoryManager->findOneById($id);
         $topics = $topicManager->findTopicsByCategory($id);
         $posts = $postManager->findPostsByTopic($id);
