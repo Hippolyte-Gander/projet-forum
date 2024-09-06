@@ -8,7 +8,7 @@ use App\Session;
 use Model\Managers\UserManager;
 
 class SecurityController extends AbstractController{
-    // contiendra les méthodes liées à l'authentification : register, login et logout
+    // contiens les méthodes liées à l'authentification : register, login et logout
 
     public function register () {
         $userManager = new UserManager();
@@ -71,11 +71,12 @@ class SecurityController extends AbstractController{
                 if($user){
                     $hash = $user->getPassword();
                     if(password_verify($password, $hash)){
+                        // vérifier si le hash du password correspond
                         Session::setUser($user);
                         $this->redirectTo("forum", "index");
                     } else {
                         $this->redirectTo("security", "login");
-                        // alert("insert valid informations");
+                        // alert("Informations non valides");
                     }
                 } else {
                     $this->redirectTo("security", "login");
